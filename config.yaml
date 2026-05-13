@@ -1,0 +1,43 @@
+# config.yaml - centralized ZOO parameters
+
+grounding_dino:
+  text_prompt: "animal"
+  box_threshold: 0.25
+  text_threshold: 0.35
+  config_path: "grounding_dino/groundingdino/config/GroundingDINO_SwinT_OGC.py"
+  checkpoint: "gdino_checkpoints/groundingdino_swint_ogc.pth"
+
+sam2:
+  checkpoint: "./checkpoints/sam2.1_hiera_large.pt"
+  config: "configs/sam2.1/sam2.1_hiera_l.yaml"
+
+image:
+  save_mask: true
+  mask_format: "npz"   # npz or png
+
+image_filter:
+  mask_iou_threshold: 0.8
+
+video:
+  mask_filter_interval: 5
+  save_mask: true
+  mask_format: "npz"   # npz or png
+
+tracker:
+  is_lab_scene: false
+  total_target_count: null
+  det_thresh: 0.4
+  iou_threshold: 0.3
+  max_age: 30
+  min_hits: 3
+  occlusion_penalty: 0.5
+  scene_image: ""
+
+optical_flow:
+  process_size: [480, 480]
+  overlap_threshold: 0.3
+
+id_validator:
+  if_validator: false
+  id_validator_path: ""
+  id_validator_function: "locate_from_box"

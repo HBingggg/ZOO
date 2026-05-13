@@ -1,0 +1,46 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+conda_env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Outputs
+outputs/
+runs/
+logs/
+*.log
+
+# Data and videos
+data/
+datasets/
+videos/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Model weights
+checkpoints/
+gdino_checkpoints/
+weights/
+weight/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Temporary files
+*.tmp
+*.bak

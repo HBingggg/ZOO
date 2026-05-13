@@ -1,0 +1,25 @@
+# config.yaml
+
+grounding_dino:
+  text_prompt: "animal"
+  box_threshold: 0.25
+  text_threshold: 0.35
+
+id_validator:
+  if_validator: false
+  id_validator_path: "newzooe/EStag/estag_wrapper.py"
+  id_validator_function: "locate_from_box"
+
+tracker:
+  is_lab_scene: false
+  scene_image: ""
+  total_target_count: 0
+  det_thresh: 0.4
+  iou_threshold: 0.3
+  max_age: 30
+  min_hits: 3
+  # 注意：如果启用了 validator，请确保 tracker 逻辑已更新
+
+optical_flow:
+  process_size: [480, 480]   # 光流计算时的压缩尺寸 [width, height]，设为 null 或 [] 则使用原图
+  overlap_threshold: 0.3     # 判定为“歧义/重叠”的面积占比阈值
