@@ -123,7 +123,7 @@ class OpticalFlowTracker:
                 continue
 
             overlap_area = np.logical_and(p_mask == 1, accumulation_map > 1)
-            overlap_pixels = np.countNonZero(overlap_area)
+            overlap_pixels = np.count_nonzero(overlap_area)
             overlap_ratio = overlap_pixels / max(pixel_count, 1)
 
             status = 2 if overlap_ratio > self.overlap_threshold else 0
