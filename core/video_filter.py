@@ -186,6 +186,7 @@ class VideoProcessor:
             out_vid_path = os.path.join(output_path, f"{video_name}_annotated.mp4")
             video_writer = cv2.VideoWriter(out_vid_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
             box_annotator = sv.BoxAnnotator()
+            label_annotator = sv.LabelAnnotator(color_lookup=sv.ColorLookup.TRACK)
             mask_annotator = sv.MaskAnnotator()
 
         frame_idx = 0
@@ -326,8 +327,8 @@ class VideoProcessor:
                     annotated_frame = frame.copy()
                     annotated_frame = mask_annotator.annotate(scene=annotated_frame, detections=detections_sv)
                     labels_vis = [f"ID: {d['id']}" for d in current_masks_data]
-                    annotated_frame = box_annotator.annotate(scene=annotated_frame, detections=detections_sv,
-                                                             labels=labels_vis)
+                    annotated_frame = box_annotator.annotate(scene=annotated_frame, detections=detections_sv)
+                    annotated_frame = label_annotator.annotate(scene=annotated_frame, detections=detections_sv, labels=labels_vis)
                 else:
                     annotated_frame = frame.copy()
 
