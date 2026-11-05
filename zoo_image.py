@@ -134,13 +134,15 @@ class ZOOEImageDetector:
                 tracker_id=tracker_ids
             )
 
-            box_annotator = sv.BoxAnnotator()
-            mask_annotator = sv.MaskAnnotator()
+            box_annotator = sv.BoxAnnotator(color_lookup=sv.ColorLookup.TRACK)
+            label_annotator = sv.LabelAnnotator(color_lookup=sv.ColorLookup.TRACK)
+            mask_annotator = sv.MaskAnnotator(color_lookup=sv.ColorLookup.TRACK)
 
             annotated_frame = image_source.copy()
             annotated_frame = mask_annotator.annotate(scene=annotated_frame, detections=detections)
             labels_vis = [f"ID:{i}" for i in range(len(filtered_objects))]
-            annotated_frame = box_annotator.annotate(scene=annotated_frame, detections=detections, labels=labels_vis)
+            annotated_frame = box_annotator.annotate(scene=annotated_frame, detections=detections)
+            annotated_frame = label_annotator.annotate(scene=annotated_frame, detections=detections, labels=labels_vis)
 
             save_path = os.path.join(output_dir, f"{base_name}_annotated.jpg")
             annotated_frame_bgr = cv2.cvtColor(annotated_frame, cv2.COLOR_RGB2BGR)
